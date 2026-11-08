@@ -1,0 +1,71 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "8d3e691244f7ea5a176210f69f21aa9079fef1c46369c2567085a676dbbf9e25"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.11"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "fastapi": {
+            "hashes": [],
+            "index": "pypi",
+            "version": "==0.110.0"
+        },
+        "matplotlib": {
+            "hashes": [],
+            "index": "pypi",
+            "version": "==3.8.3"
+        },
+        "numpy": {
+            "hashes": [],
+            "index": "pypi",
+            "version": "==1.26.4"
+        },
+        "pandas": {
+            "hashes": [],
+            "index": "pypi",
+            "version": "==2.2.2"
+        },
+        "pydantic": {
+            "hashes": [],
+            "index": "pypi",
+            "version": "==2.6.4"
+        },
+        "requests": {
+            "hashes": [],
+            "index": "pypi",
+            "version": "==2.31.0"
+        },
+        "scikit-learn": {
+            "hashes": [],
+            "index": "pypi",
+            "version": "==1.4.2"
+        },
+        "seaborn": {
+            "hashes": [],
+            "index": "pypi",
+            "version": "==0.13.2"
+        },
+        "uvicorn": {
+            "hashes": [],
+            "index": "pypi",
+            "version": "==0.29.0"
+        },
+        "xgboost": {
+            "hashes": [],
+            "index": "pypi",
+            "version": "==2.0.3"
+        }
+    },
+    "develop": {}
+}
