@@ -35,6 +35,7 @@ service:
 	$(PYTHON) -m uvicorn predict:app --host 0.0.0.0 --port 9696
 
 test:
+	$(PYTHON) -m pytest -v
 	$(PYTHON) test_service.py --url http://127.0.0.1:9696
 
 docker-build:

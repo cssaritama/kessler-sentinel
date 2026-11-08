@@ -1,5 +1,6 @@
 # KESSLER-SENTINEL: Autonomous Orbital Conjunction Triage & Collision Avoidance Decision Engine in Low Earth Orbit
 
+[![CI Pipeline](https://github.com/cssaritama/kessler-sentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/cssaritama/kessler-sentinel/actions/workflows/ci.yml)
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![XGBoost](https://img.shields.io/badge/XGBoost-2.0.3-EB780A.svg)](https://xgboost.readthedocs.io/)
@@ -441,6 +442,18 @@ gcloud run deploy kessler-sentinel \
   --cpu 1
 ```
 
+### 11.3 Automated Test Suite & Continuous Integration
+The repository integrates a comprehensive 15-test automated verification suite using `pytest` and GitHub Actions (`.github/workflows/ci.yml`), validating astrodynamics mathematics, artifact integrity, and HTTP schema compliance on every push:
+
+```bash
+# Execute automated test suite
+pytest -v
+
+# Run triage client against live local microservice
+python test_service.py --url http://127.0.0.1:9696
+```
+
+
 ---
 
 ## 12. Project Directory Topology
@@ -456,6 +469,14 @@ kessler-sentinel/
 |-- README.md                         # Primary engineering specification
 |-- model_kessler_sentinel_v1.bin     # Serialized production model artifact
 |-- notebook.ipynb                    # 100% Executed end-to-end research notebook
+|-- .github/
+|   `-- workflows/
+|       `-- ci.yml                    # Automated GitHub Actions CI pipeline
+|-- tests/
+|   |-- __init__.py                   # Test package marker
+|   |-- test_api.py                   # FastAPI endpoint & validation test suite
+|   |-- test_features.py              # Astrodynamics feature mathematics tests
+|   `-- test_model.py                 # Serialized artifact & decision logic tests
 |-- predict.py                        # FastAPI flight dynamics triage API & Web Console
 |-- render.yaml                       # Cloud deployment specification
 |-- requirements.txt                  # Pinned Python package requirements
