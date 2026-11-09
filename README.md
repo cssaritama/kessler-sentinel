@@ -55,52 +55,29 @@ Evaluated at the $T - 48\text{h}$ operational Go/No-Go screening gate:
 
 The decision pipeline transforms raw orbital state vectors and space weather telemetry into calibrated risk assessments and recommended flight actions:
 
-```
-+---------------------------------------------------------------------------------------------------+
-|                                 KESSLER-SENTINEL SYSTEM TOPOLOGY                                  |
-+---------------------------------------------------------------------------------------------------+
-|                                                                                                   |
-|  [Space Surveillance Network CDMs] ---> [Deterministic Telemetry Ingestion Engine]                |
-|                                                      |                                            |
-|                                                      v                                            |
-|                                     [Astrodynamics Feature Engine]                                |
-|                                     - Mahalanobis RTN Proximity (D_M)                             |
-|                                     - Kinetic Lethality Index (I_lethal)                          |
-|                                     - Thermospheric Drag Perturbation (P_drag)                    |
-|                                     - Radial Uncertainty Margin (M_R)                             |
-|                                                      |                                            |
-|                                                      v                                            |
-|                                         [DictVectorizer Transform]                                |
-|                                       37 Orthogonal Encoded Features                              |
-|                                                      |                                            |
-|                                                      v                                            |
-|                                        [Tuned XGBoost ML Classifier]                              |
-|                                    180 Estimators | Depth 5 | eta 0.08                            |
-|                                                      |                                            |
-|                                                      v                                            |
-|                                     [Asymmetric Cost Decision Gate]                               |
-|                                       Threshold tau* = 0.0550                                     |
-|                                       Cost Ratio C_FN / C_FP = 25.0                               |
-|                                                      |                                            |
-|                                                      v                                            |
-|                       [Interactive Operations Microservice (FastAPI : 9696)]                      |
-|                                        GET  / (Web Console)                                       |
-|                                        GET  /health                                               |
-|                                        POST /predict                                              |
-|                                                                                                   |
-+---------------------------------------------------------------------------------------------------+
-```
+<p align="center">
+  <img src="docs/figures/system_architecture.svg" alt="KESSLER-SENTINEL End-to-End Decision Pipeline Architecture" width="100%">
+</p>
 
 ```mermaid
-flowchart TD
-    A["Raw Conjunction Data Message (CDM)"] --> B["Astrodynamics Feature Engine (src/features.py)"]
-    B --> C["Covariance Scaling & Vectorizer (DictVectorizer)"]
-    C --> D["Tuned XGBoost Classifier Pipeline"]
-    D --> E["Calibrated Probability P(Escalation)"]
-    E --> F{"Operational Decision Gate: P >= tau* (0.0550)"}
-    F -->|True| G["RED / AMBER: Trigger Collision Avoidance Maneuver (CAM)"]
-    F -->|False| H["GREEN: Nominal Pass, Preserve Propellant Delta-V"]
-    G --> I["JSON Directive & Interactive Web Console"]
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1e293b', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#475569', 'lineColor': '#64748b', 'secondaryColor': '#0f172a', 'tertiaryColor': '#1e293b'}}}%%
+flowchart LR
+    classDef default fill:#1e293b,stroke:#475569,stroke-width:1.5px,color:#f8fafc,rx:6px,ry:6px;
+    classDef accent fill:#0f172a,stroke:#38bdf8,stroke-width:1.8px,color:#e2e8f0,rx:6px,ry:6px;
+    classDef ml fill:#0f172a,stroke:#818cf8,stroke-width:1.8px,color:#e2e8f0,rx:6px,ry:6px;
+    classDef decision fill:#1e1b4b,stroke:#c084fc,stroke-width:2px,color:#f5f3ff,rx:8px,ry:8px;
+    classDef alert fill:#450a0a,stroke:#ef4444,stroke-width:2px,color:#fca5a5,font-weight:bold,rx:6px,ry:6px;
+    classDef nominal fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#6ee7b7,font-weight:bold,rx:6px,ry:6px;
+    classDef output fill:#0f172a,stroke:#14b8a6,stroke-width:2px,color:#5eead4,font-weight:bold,rx:6px,ry:6px;
+
+    A["<b>1. Raw Telemetry</b><br/>Conjunction Data Message (CDM)<br/><small>SSN State Vectors & Covariances</small>"]:::default --> B["<b>2. Astrodynamics Engine</b><br/>Physics Feature Engineering<br/><small>D_M, Lethality, Drag (src/features.py)</small>"]:::accent
+    B --> C["<b>3. Vectorization</b><br/>Covariance Scaling & Vectorizer<br/><small>DictVectorizer (37 Orthogonal Features)</small>"]:::default
+    C --> D["<b>4. Tuned Ensemble</b><br/>Tuned XGBoost Pipeline<br/><small>180 Estimators | Depth 5 | eta 0.08</small>"]:::ml
+    D --> E["<b>5. Calibrated Risk</b><br/>Calibrated Probability<br/><small>P(Escalation) in [0, 1]</small>"]:::default
+    E --> F{"<b>6. Decision Gate</b><br/>P >= tau* (0.0550)?"}:::decision
+    F -->|True: High Risk| G["<b>RED / AMBER</b><br/>Trigger Collision Avoidance (CAM)<br/><small>Delta-V burn & radar tasking</small>"]:::alert
+    F -->|False: Nominal| H["<b>GREEN</b><br/>Nominal Orbital Pass<br/><small>Preserve Propellant Delta-V</small>"]:::nominal
+    G --> I["<b>7. Flight Directive</b><br/>JSON Directive & Web Console<br/><small>FastAPI REST Service :9696</small>"]:::output
     H --> I
 ```
 
@@ -480,12 +457,15 @@ kessler-sentinel/
 |-- predict.py                        # FastAPI flight dynamics triage API & Web Console
 |-- render.yaml                       # Cloud deployment specification
 |-- requirements.txt                  # Pinned Python package requirements
+|-- test.py                           # Zoomcamp standard evaluation test client
 |-- test_service.py                   # Automated triage scenario test suite
 |-- train.py                          # CLI model training and serialization script
 |-- data/
 |   `-- leo_conjunction_cdm_events.csv # Deterministic conjunction telemetry dataset
 |-- docs/
-|   `-- figures/                      # Minimalist publication figures (300 DPI)
+|   `-- figures/                      # Minimalist publication figures (300 DPI) & Vector SVG
+|       |-- system_architecture.svg   # Scalable responsive pipeline vector graphic
+|       |-- system_architecture.png   # 300 DPI architecture blueprint
 |       |-- fig1_target_and_regime_breakdown.png
 |       |-- fig2_rtn_kinematics_distributions.png
 |       |-- fig3_mutual_information_and_correlations.png
@@ -497,7 +477,8 @@ kessler-sentinel/
     |-- build_notebook.py             # Programmatic notebook constructor
     |-- execute_notebook.py           # Headless notebook execution engine
     |-- features.py                   # Astrodynamics feature engineering module
-    `-- generate_figures.py           # Editorial figure rendering script
+    |-- generate_figures.py           # Editorial figure rendering script
+    `-- render_architecture_diagram.py# Vector SVG & PNG architecture schematic generator
 ```
 
 ---

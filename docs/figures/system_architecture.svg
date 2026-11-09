@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 540" width="100%" height="100%" style="background:#0B0F19; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141E33"/>
+      <stop offset="100%" stop-color="#0E1726"/>
+    </linearGradient>
+    <linearGradient id="gateGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#241B44"/>
+      <stop offset="100%" stop-color="#191230"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3B1219"/>
+      <stop offset="100%" stop-color="#230B0F"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0E3326"/>
+      <stop offset="100%" stop-color="#091E17"/>
+    </linearGradient>
+    <filter id="subtleShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrowIndigo" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#818CF8"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <!-- Header Title -->
+  <g transform="translate(50, 42)">
+    <text x="0" y="0" fill="#38BDF8" font-size="14" font-weight="700" letter-spacing="1.2">KESSLER-SENTINEL  //  AUTONOMOUS ORBITAL CONJUNCTION DECISION PIPELINE</text>
+    <text x="0" y="22" fill="#94A3B8" font-size="12">Real-Time Low Earth Orbit (LEO) Collision Escalation Triage at T-48h Operational Screening Gate</text>
+  </g>
+
+  <!-- CARD 1: RAW CDM TELEMETRY -->
+  <g transform="translate(50, 95)" filter="url(#subtleShadow)">
+    <rect width="210" height="260" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="14" y="14" width="112" height="20" rx="4" fill="#1E293B" stroke="#64748B" stroke-width="0.8"/>
+    <text x="22" y="28" fill="#94A3B8" font-size="9" font-weight="700" letter-spacing="0.5">STEP 1 : TELEMETRY</text>
+    <text x="14" y="58" fill="#F8FAFC" font-size="13" font-weight="700">Raw Conjunction</text>
+    <text x="14" y="76" fill="#F8FAFC" font-size="13" font-weight="700">Message (CDM)</text>
+    <g fill="#94A3B8" font-size="10.5">
+      <text x="14" y="112">• SSN / Space-Track Radar</text>
+      <text x="14" y="134">• RTN State Vectors (r, v)</text>
+      <text x="14" y="156">• Joint Covariance 3x3</text>
+      <text x="14" y="178">• Solar Flux &amp; Geomagnetic</text>
+      <text x="14" y="200">• Lead Time to TCA (12-96h)</text>
+      <text x="14" y="222">• Object Class &amp; Thrusters</text>
+    </g>
+  </g>
+
+  <!-- CONNECTOR 1 -> 2 -->
+  <line x1="262" y1="225" x2="298" y2="225" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowCyan)"/>
+
+  <!-- CARD 2: ASTRODYNAMICS ENGINE -->
+  <g transform="translate(302, 95)" filter="url(#subtleShadow)">
+    <rect width="220" height="260" rx="10" fill="url(#cardGrad)" stroke="#0284C7" stroke-width="1.4"/>
+    <rect x="14" y="14" width="138" height="20" rx="4" fill="#0C2D48" stroke="#0284C7" stroke-width="0.8"/>
+    <text x="22" y="28" fill="#38BDF8" font-size="9" font-weight="700" letter-spacing="0.5">STEP 2 : ASTRODYNAMICS</text>
+    <text x="14" y="58" fill="#F8FAFC" font-size="13" font-weight="700">Physics Feature Engine</text>
+    <text x="14" y="76" fill="#38BDF8" font-size="11" font-weight="600">(src/features.py)</text>
+    <g fill="#94A3B8" font-size="10.5">
+      <text x="14" y="112">• Mahalanobis Proximity D_M</text>
+      <text x="14" y="134">• Kinetic Lethality log(I_leth)</text>
+      <text x="14" y="156">• Thermospheric Drag P_drag</text>
+      <text x="14" y="178">• Radial Margin |ΔR|/(σ_R+1)</text>
+      <text x="14" y="200">• Training-Fitted Imputation</text>
+      <text x="14" y="222">• Strict Data-Leak Prevention</text>
+    </g>
+  </g>
+
+  <!-- CONNECTOR 2 -> 3 -->
+  <line x1="524" y1="225" x2="560" y2="225" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowCyan)"/>
+
+  <!-- CARD 3: ML PIPELINE -->
+  <g transform="translate(564, 95)" filter="url(#subtleShadow)">
+    <rect width="215" height="260" rx="10" fill="url(#cardGrad)" stroke="#6366F1" stroke-width="1.4"/>
+    <rect x="14" y="14" width="124" height="20" rx="4" fill="#201C47" stroke="#6366F1" stroke-width="0.8"/>
+    <text x="22" y="28" fill="#818CF8" font-size="9" font-weight="700" letter-spacing="0.5">STEP 3 : ML PIPELINE</text>
+    <text x="14" y="58" fill="#F8FAFC" font-size="13" font-weight="700">DictVectorizer &amp;</text>
+    <text x="14" y="76" fill="#F8FAFC" font-size="13" font-weight="700">Tuned XGBoost</text>
+    <g fill="#94A3B8" font-size="10.5">
+      <text x="14" y="112">• 37 Orthogonal Features</text>
+      <text x="14" y="134">• 180 Estimators, Depth 5</text>
+      <text x="14" y="156">• Learning Rate η = 0.08</text>
+      <text x="14" y="178">• 5-Fold CV: 0.9290 AUC</text>
+      <text x="14" y="200">• Calibrated P(Escalation)</text>
+      <text x="14" y="222">• Atomic Artifact Serialization</text>
+    </g>
+  </g>
+
+  <!-- CONNECTOR 3 -> 4 -->
+  <line x1="781" y1="225" x2="817" y2="225" stroke="#818CF8" stroke-width="2" marker-end="url(#arrowIndigo)"/>
+
+  <!-- CARD 4: ASYMMETRIC DECISION GATE -->
+  <g transform="translate(821, 115)" filter="url(#subtleShadow)">
+    <rect width="180" height="220" rx="10" fill="url(#gateGrad)" stroke="#A855F7" stroke-width="1.5"/>
+    <rect x="12" y="14" width="128" height="20" rx="4" fill="#3B1C5A" stroke="#C084FC" stroke-width="0.8"/>
+    <text x="18" y="28" fill="#E9D5FF" font-size="8.5" font-weight="700" letter-spacing="0.5">STEP 4 : DECISION GATE</text>
+    <text x="12" y="58" fill="#F8FAFC" font-size="12" font-weight="700">Operational Gate</text>
+    <text x="12" y="76" fill="#C084FC" font-size="12" font-weight="700">P ≥ τ* (0.0550)</text>
+    <g fill="#CBD5E1" font-size="10">
+      <text x="12" y="108">• Asymmetric Cost Loss</text>
+      <text x="12" y="128">• Ratio C_FN / C_FP = 25</text>
+      <text x="12" y="148">• Safety Recall: 89.6%</text>
+      <text x="12" y="168">• F2-Score: 0.7708</text>
+      <text x="12" y="188">• Protects Delta-V Budget</text>
+    </g>
+  </g>
+
+  <!-- BRANCHING ARROWS -->
+  <!-- Upper: To RED/AMBER -->
+  <path d="M 1003 190 L 1028 155 L 1048 155" fill="none" stroke="#EF4444" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <text x="1012" y="145" fill="#EF4444" font-size="9" font-weight="700">P ≥ 0.0550</text>
+
+  <!-- Lower: To GREEN -->
+  <path d="M 1003 260 L 1028 295 L 1048 295" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="1012" y="315" fill="#10B981" font-size="9" font-weight="700">P &lt; 0.0550</text>
+
+  <!-- CARD 5A: RED / AMBER DIRECTIVE -->
+  <g transform="translate(1052, 95)" filter="url(#subtleShadow)">
+    <rect width="180" height="120" rx="8" fill="url(#redGrad)" stroke="#EF4444" stroke-width="1.4"/>
+    <text x="12" y="24" fill="#FCA5A5" font-size="8.5" font-weight="700" letter-spacing="0.5">DIRECTIVE : ESCALATION</text>
+    <text x="12" y="44" fill="#FEE2E2" font-size="11.5" font-weight="700">RED / AMBER : CAM</text>
+    <g fill="#FCA5A5" font-size="9.5">
+      <text x="12" y="66">• Sequence thruster warm-up</text>
+      <text x="12" y="84">• Attitude slew for Δv burn</text>
+      <text x="12" y="102">• Task high-priority radar</text>
+    </g>
+  </g>
+
+  <!-- CARD 5B: GREEN DIRECTIVE -->
+  <g transform="translate(1052, 235)" filter="url(#subtleShadow)">
+    <rect width="180" height="120" rx="8" fill="url(#greenGrad)" stroke="#10B981" stroke-width="1.4"/>
+    <text x="12" y="24" fill="#6EE7B7" font-size="8.5" font-weight="700" letter-spacing="0.5">DIRECTIVE : NOMINAL PASS</text>
+    <text x="12" y="44" fill="#D1FAE5" font-size="11.5" font-weight="700">GREEN : Hold Maneuver</text>
+    <g fill="#6EE7B7" font-size="9.5">
+      <text x="12" y="66">• Nominal clearance verified</text>
+      <text x="12" y="84">• Conserve onboard propellant</text>
+      <text x="12" y="102">• Maintain scientific pointing</text>
+    </g>
+  </g>
+
+  <!-- FOOTER: INTERFACES & DEPLOYMENT -->
+  <g transform="translate(50, 395)" filter="url(#subtleShadow)">
+    <rect width="1182" height="100" rx="10" fill="#0E1726" stroke="#1E293B" stroke-width="1.2"/>
+    <text x="20" y="32" fill="#F8FAFC" font-size="12" font-weight="700" letter-spacing="0.8">PRODUCTION INTERFACES &amp; CLOUD DEPLOYMENT</text>
+    <g fill="#94A3B8" font-size="11">
+      <text x="20" y="62">
+        <tspan fill="#38BDF8" font-weight="600">REST API :</tspan> POST /predict (FastAPI :9696, Pydantic Schema)    
+        <tspan fill="#38BDF8" font-weight="600">Health :</tspan> GET /health    
+        <tspan fill="#38BDF8" font-weight="600">Flight Console :</tspan> GET / (Interactive Web UI)
+      </text>
+      <text x="20" y="84">
+        <tspan fill="#818CF8" font-weight="600">Container :</tspan> Docker (python:3.11-slim)    
+        <tspan fill="#818CF8" font-weight="600">Cloud :</tspan> Render Blueprint (render.yaml) &amp; Google Cloud Run    
+        <tspan fill="#10B981" font-weight="600">Verification :</tspan> test_service.py (Red/Amber/Green Scenarios)
+      </text>
+    </g>
+  </g>
+</svg>
