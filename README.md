@@ -18,7 +18,7 @@ An operational flight dynamics decision engine engineered for real-time risk tri
 Low Earth Orbit ($300\text{--}2,000\text{ km}$ altitude) concentrates Earth-observation platforms, meteorological assets, and mega-constellation communications. Decades of orbital activity have deposited over 36,000 tracked objects and an estimated one million lethal uncatalogued fragments. At encounter velocities ($v_{\text{rel}} \approx 7\text{--}15\text{ km/s}$), hypervelocity impacts deliver kinetic energy orders of magnitude above explosive detonation yields. A catastrophic encounter between major payloads risks triggering self-propagating orbital fragmentation cascades, commonly formulated as **Kessler Syndrome**.
 
 <p align="center">
-  <img src="docs/figures/rtn_frame_geometry.svg" alt="Relative Orbital Geometry at TCA in the RTN Coordinate Frame" width="100%">
+  <img src="docs/figures/rtn_coordinate_frame.svg" alt="Relative Orbital Geometry at TCA in the RTN Coordinate Frame" width="100%">
 </p>
 
 Flight operations teams (such as ESA ESOC, NASA CARA, and commercial operators) screen thousands of Conjunction Data Messages weekly under an acute operational tension:
@@ -450,7 +450,7 @@ kessler-sentinel/
 |   `-- leo_conjunction_cdm_events.csv # Deterministic conjunction telemetry dataset
 |-- docs/
 |   `-- figures/                      # Minimalist publication figures (300 DPI) & Vector SVG
-|       |-- rtn_frame_geometry.svg    # Responsive RTN encounter coordinate geometry
+|       |-- rtn_coordinate_frame.svg  # Responsive RTN encounter coordinate geometry
 |       |-- system_architecture.svg   # Scalable responsive pipeline vector graphic
 |       |-- system_architecture.png   # 300 DPI architecture blueprint
 |       |-- fig1_target_and_regime_breakdown.png
