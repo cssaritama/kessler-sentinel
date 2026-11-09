@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 340" width="100%" height="100%" style="background:#0B0F19; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="rtnCardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141E33"/>
+      <stop offset="100%" stop-color="#0E1726"/>
+    </linearGradient>
+    <radialGradient id="covGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.35"/>
+      <stop offset="70%" stop-color="#0284C7" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0284C7" stop-opacity="0.0"/>
+    </radialGradient>
+    <radialGradient id="satGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="chaserGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#EF4444" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#EF4444" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arrowCyanRTN" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrowWhiteRTN" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#F8FAFC"/>
+    </marker>
+    <marker id="arrowAmberRTN" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#F59E0B"/>
+    </marker>
+  </defs>
+
+  <!-- Title & Frame Header -->
+  <g transform="translate(30, 32)">
+    <rect x="0" y="0" width="150" height="20" rx="4" fill="#1E293B" stroke="#64748B" stroke-width="0.8"/>
+    <text x="10" y="14" fill="#38BDF8" font-size="9.5" font-weight="700" letter-spacing="0.8">ASTRODYNAMICS FRAME</text>
+    <text x="165" y="15" fill="#F8FAFC" font-size="12.5" font-weight="700">Relative Orbital Geometry at TCA in RTN Coordinates</text>
+  </g>
+
+  <!-- Origin Reference (Primary Spacecraft) -->
+  <g transform="translate(130, 240)">
+    <!-- Axes Lines -->
+    <!-- R-Axis (Vertical Zenith) -->
+    <line x1="0" y1="0" x2="0" y2="-175" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowCyanRTN)"/>
+    <text x="-12" y="-185" fill="#38BDF8" font-size="11.5" font-weight="700">^ Radial (R)</text>
+    <text x="10" y="-165" fill="#94A3B8" font-size="9">[Altitude Separation: ΔR]</text>
+    <text x="10" y="-150" fill="#64748B" font-size="8.5">Governs semi-major axis intersection; primary collision risk vector</text>
+
+    <!-- T-Axis (Horizontal Along-Track) -->
+    <line x1="0" y1="0" x2="520" y2="0" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowCyanRTN)"/>
+    <text x="530" y="4" fill="#38BDF8" font-size="11.5" font-weight="700">Transverse / In-Track (T) &gt;</text>
+    <text x="530" y="20" fill="#94A3B8" font-size="9">[Along-Track Separation: ΔT]</text>
+    <text x="530" y="34" fill="#64748B" font-size="8.5">Velocity vector direction; dominant drag uncertainty</text>
+
+    <!-- N-Axis (Depth Cross-Track Normal) -->
+    <line x1="0" y1="0" x2="-65" y2="55" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowCyanRTN)"/>
+    <text x="-125" y="75" fill="#38BDF8" font-size="11.5" font-weight="700">Normal (N)</text>
+    <text x="-125" y="90" fill="#94A3B8" font-size="9">[Cross-Track: ΔN]</text>
+
+    <!-- Primary Spacecraft at Origin -->
+    <circle cx="0" cy="0" r="14" fill="url(#satGlow)"/>
+    <circle cx="0" cy="0" r="5" fill="#38BDF8" stroke="#FFFFFF" stroke-width="1.5"/>
+    <text x="10" y="16" fill="#F8FAFC" font-size="10" font-weight="700">Primary Payload (0,0,0)</text>
+
+    <!-- Covariance Ellipsoid surrounding Chaser -->
+    <!-- Position of Chaser at (dT = 290, dR = -70) -->
+    <g transform="translate(290, -70)">
+      <!-- 3D Covariance Ellipse (sigma_T >> sigma_R) -->
+      <ellipse cx="0" cy="0" rx="150" ry="36" fill="url(#covGrad)" stroke="#38BDF8" stroke-width="1.4" stroke-dasharray="5,4"/>
+      
+      <!-- Ellipsoid Perspective Depth lines -->
+      <ellipse cx="0" cy="8" rx="146" ry="32" fill="none" stroke="#0284C7" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6"/>
+
+      <!-- Chaser Point with Red Glow -->
+      <circle cx="0" cy="0" r="12" fill="url(#chaserGlow)"/>
+      <circle cx="0" cy="0" r="4.5" fill="#EF4444" stroke="#FFFFFF" stroke-width="1.5"/>
+      
+      <!-- Chaser Label Card -->
+      <rect x="-70" y="-45" width="140" height="24" rx="4" fill="#1E1B4B" stroke="#818CF8" stroke-width="1"/>
+      <text x="0" y="-30" fill="#F8FAFC" font-size="9.5" font-weight="700" text-anchor="middle">Chaser Object (*)</text>
+
+      <!-- Covariance Dimension Annotation -->
+      <text x="0" y="22" fill="#E2E8F0" font-size="9" font-weight="600" text-anchor="middle">Covariance Ellipsoid (σ_T ≫ σ_R)</text>
+      <text x="0" y="34" fill="#94A3B8" font-size="8" text-anchor="middle">Along-Track Dispersion driven by Atmospheric Drag</text>
+
+      <!-- Separation Vectors from origin -->
+      <line x1="-290" y1="70" x2="0" y2="0" stroke="#F59E0B" stroke-width="1.2" stroke-dasharray="4,4"/>
+      <text x="-160" y="45" fill="#F59E0B" font-size="9" font-weight="600">Miss Distance vector |d|</text>
+    </g>
+
+    <!-- Component Projection Guides -->
+    <!-- Along-Track Delta T Guide -->
+    <line x1="0" y1="20" x2="290" y2="20" stroke="#64748B" stroke-width="1" stroke-dasharray="2,2"/>
+    <line x1="0" y1="16" x2="0" y2="24" stroke="#64748B" stroke-width="1"/>
+    <line x1="290" y1="16" x2="290" y2="24" stroke="#64748B" stroke-width="1"/>
+    <text x="145" y="34" fill="#CBD5E1" font-size="9" font-weight="600" text-anchor="middle">Along-Track Separation (ΔT)</text>
+
+    <!-- Radial Delta R Guide -->
+    <line x1="-30" y1="0" x2="-30" y2="-70" stroke="#64748B" stroke-width="1" stroke-dasharray="2,2"/>
+    <line x1="-34" y1="0" x2="-26" y2="0" stroke="#64748B" stroke-width="1"/>
+    <line x1="-34" y1="-70" x2="-26" y2="-70" stroke="#64748B" stroke-width="1"/>
+    <text x="-38" y="-32" fill="#CBD5E1" font-size="9" font-weight="600" text-anchor="end">Radial (ΔR)</text>
+  </g>
+</svg>

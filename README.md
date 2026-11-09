@@ -17,28 +17,9 @@ An operational flight dynamics decision engine engineered for real-time risk tri
 ### 1.1 The Planetary Debris Crisis in Low Earth Orbit
 Low Earth Orbit ($300\text{--}2,000\text{ km}$ altitude) concentrates Earth-observation platforms, meteorological assets, and mega-constellation communications. Decades of orbital activity have deposited over 36,000 tracked objects and an estimated one million lethal uncatalogued fragments. At encounter velocities ($v_{\text{rel}} \approx 7\text{--}15\text{ km/s}$), hypervelocity impacts deliver kinetic energy orders of magnitude above explosive detonation yields. A catastrophic encounter between major payloads risks triggering self-propagating orbital fragmentation cascades, commonly formulated as **Kessler Syndrome**.
 
-```
-Relative Orbital Geometry at TCA in the RTN Coordinate Frame:
-
-          ^ Radial (R) [Altitude Separation: Delta R]
-          | (Governs semi-major axis intersection; most critical collision vector)
-          |
-          |       +-----------------------------+
-          |      /    Covariance Ellipsoid     /|
-          |     /       sigma_T >> sigma_R    / |
-          |    +-----------------------------+  |
-          |    |                             |  |
-          |    |     Chaser Object           |  |
-          |    |             *               |  +
-          |    |                             | /
-          |    +-----------------------------+/
-          |
-          +----------------------------------------------------> Transverse / In-Track (T)
-         /                                                      [Along-Track Separation: Delta T]
-        /                                                       (Dominant Atmospheric Drag Uncertainty)
-       /
-      v Normal / Cross-Track (N) [Delta N]
-```
+<p align="center">
+  <img src="docs/figures/rtn_frame_geometry.svg" alt="Relative Orbital Geometry at TCA in the RTN Coordinate Frame" width="100%">
+</p>
 
 Flight operations teams (such as ESA ESOC, NASA CARA, and commercial operators) screen thousands of Conjunction Data Messages weekly under an acute operational tension:
 1. **Safety Imperative:** Failing to identify an escalating collision hazard ($P_c \ge 10^{-4}$) leads to catastrophic payload destruction and long-term orbital contamination.
@@ -58,6 +39,9 @@ The decision pipeline transforms raw orbital state vectors and space weather tel
 <p align="center">
   <img src="docs/figures/system_architecture.svg" alt="KESSLER-SENTINEL End-to-End Decision Pipeline Architecture" width="100%">
 </p>
+
+<details>
+<summary><b>Click to expand raw Mermaid flowchart specification</b></summary>
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1e293b', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#475569', 'lineColor': '#64748b', 'secondaryColor': '#0f172a', 'tertiaryColor': '#1e293b'}}}%%
@@ -80,6 +64,8 @@ flowchart LR
     G --> I["<b>7. Flight Directive</b><br/>JSON Directive & Web Console<br/><small>FastAPI REST Service :9696</small>"]:::output
     H --> I
 ```
+
+</details>
 
 ---
 
@@ -464,6 +450,7 @@ kessler-sentinel/
 |   `-- leo_conjunction_cdm_events.csv # Deterministic conjunction telemetry dataset
 |-- docs/
 |   `-- figures/                      # Minimalist publication figures (300 DPI) & Vector SVG
+|       |-- rtn_frame_geometry.svg    # Responsive RTN encounter coordinate geometry
 |       |-- system_architecture.svg   # Scalable responsive pipeline vector graphic
 |       |-- system_architecture.png   # 300 DPI architecture blueprint
 |       |-- fig1_target_and_regime_breakdown.png
@@ -478,7 +465,8 @@ kessler-sentinel/
     |-- execute_notebook.py           # Headless notebook execution engine
     |-- features.py                   # Astrodynamics feature engineering module
     |-- generate_figures.py           # Editorial figure rendering script
-    `-- render_architecture_diagram.py# Vector SVG & PNG architecture schematic generator
+    |-- render_architecture_diagram.py# Vector SVG & PNG architecture schematic generator
+    `-- render_rtn_diagram.py         # Vector SVG RTN geometry schematic generator
 ```
 
 ---

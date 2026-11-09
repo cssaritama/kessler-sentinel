@@ -28,6 +28,7 @@ data:
 figures:
 	$(PYTHON) src/generate_figures.py
 	$(PYTHON) src/render_architecture_diagram.py
+	$(PYTHON) src/render_rtn_diagram.py
 
 train:
 	$(PYTHON) train.py --data-path data/leo_conjunction_cdm_events.csv --output-model model_kessler_sentinel_v1.bin
