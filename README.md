@@ -17,9 +17,7 @@ An operational flight dynamics decision engine engineered for real-time risk tri
 ### 1.1 The Planetary Debris Crisis in Low Earth Orbit
 Low Earth Orbit ($300\text{--}2,000\text{ km}$ altitude) concentrates Earth-observation platforms, meteorological assets, and mega-constellation communications. Decades of orbital activity have deposited over 36,000 tracked objects and an estimated one million lethal uncatalogued fragments. At encounter velocities ($v_{\text{rel}} \approx 7\text{--}15\text{ km/s}$), hypervelocity impacts deliver kinetic energy orders of magnitude above explosive detonation yields. A catastrophic encounter between major payloads risks triggering self-propagating orbital fragmentation cascades, commonly formulated as **Kessler Syndrome**.
 
-<p align="center">
-  <img src="docs/figures/rtn_coordinate_frame.svg" alt="Relative Orbital Geometry at TCA in the RTN Coordinate Frame" width="100%">
-</p>
+![Relative Orbital Geometry at TCA in the RTN Coordinate Frame](docs/figures/rtn_coordinate_frame.png)
 
 Flight operations teams (such as ESA ESOC, NASA CARA, and commercial operators) screen thousands of Conjunction Data Messages weekly under an acute operational tension:
 1. **Safety Imperative:** Failing to identify an escalating collision hazard ($P_c \ge 10^{-4}$) leads to catastrophic payload destruction and long-term orbital contamination.
@@ -36,9 +34,7 @@ Evaluated at the $T - 48\text{h}$ operational Go/No-Go screening gate:
 
 The decision pipeline transforms raw orbital state vectors and space weather telemetry into calibrated risk assessments and recommended flight actions:
 
-<p align="center">
-  <img src="docs/figures/system_architecture.svg" alt="KESSLER-SENTINEL End-to-End Decision Pipeline Architecture" width="100%">
-</p>
+![KESSLER-SENTINEL End-to-End Decision Pipeline Architecture](docs/figures/system_architecture.png)
 
 <details>
 <summary><b>Click to expand raw Mermaid flowchart specification</b></summary>
@@ -449,10 +445,11 @@ kessler-sentinel/
 |-- data/
 |   `-- leo_conjunction_cdm_events.csv # Deterministic conjunction telemetry dataset
 |-- docs/
-|   `-- figures/                      # Minimalist publication figures (300 DPI) & Vector SVG
-|       |-- rtn_coordinate_frame.svg  # Responsive RTN encounter coordinate geometry
-|       |-- system_architecture.svg   # Scalable responsive pipeline vector graphic
+|   `-- figures/                      # Minimalist publication figures (300 DPI) & Vector Graphics
+|       |-- rtn_coordinate_frame.png  # 300 DPI RTN encounter coordinate geometry
+|       |-- rtn_coordinate_frame.svg  # Scalable RTN encounter coordinate geometry
 |       |-- system_architecture.png   # 300 DPI architecture blueprint
+|       |-- system_architecture.svg   # Scalable responsive pipeline vector graphic
 |       |-- fig1_target_and_regime_breakdown.png
 |       |-- fig2_rtn_kinematics_distributions.png
 |       |-- fig3_mutual_information_and_correlations.png
