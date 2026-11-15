@@ -1,6 +1,9 @@
 """Unit tests for FastAPI conjunction triage microservice endpoints."""
 
 import pytest
+
+fastapi = pytest.importorskip("fastapi")
+xgboost = pytest.importorskip("xgboost")
 from fastapi.testclient import TestClient
 
 from predict import app

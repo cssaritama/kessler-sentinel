@@ -9,6 +9,7 @@ MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "model_kessler_sentin
 
 @pytest.fixture(scope="session")
 def loaded_artifact():
+    pytest.importorskip("xgboost")
     assert os.path.exists(MODEL_PATH), f"Model artifact not found at {MODEL_PATH}"
     with open(MODEL_PATH, "rb") as f:
         artifact = pickle.load(f)
