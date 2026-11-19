@@ -12,7 +12,7 @@ To maintain context hygiene and prevent hallucination, agents MUST observe the f
 
 | Action | Permitted Boundaries | Forbidden Boundaries |
 | :--- | :--- | :--- |
-| **Where to Read on Startup** (Max 4 files) | 1. `AGENTS.md` (this file)<br>2. `README.md`<br>3. `predict.py`<br>4. `tests/test_model.py` | Do **NOT** scan arbitrary files or historical branches without explicit task scope. |
+| **Where to Start Reading**<br>*(Then follow links as the task requires)* | 1. `AGENTS.md` (this file)<br>2. `README.md`<br>3. `predict.py`<br>4. `tests/test_model.py` | Start with these files, then follow links until scope, permissions and acceptance are clear. Read history, archives, large logs or other repositories only when the task needs that evidence. |
 | **Where to Write** | `src/`, `predict.py`, `train.py`, `tests/`, `docs/`, `Makefile`, `Dockerfile` | Do **NOT** write operational logs or cross-portfolio items locally; route portfolio-wide tasks to `systems-studio-portfolio-ops/MASTER_BACKLOG.md`. |
 | **Where NOT to Read** | Active source code and configuration files | Strictly NEVER inspect or parse files in `archive/`, `past_version/`, `.venv/`, or `.pytest_cache/`. |
 
