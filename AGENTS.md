@@ -13,7 +13,7 @@ To maintain context hygiene and prevent hallucination, agents MUST observe the f
 | Action | Permitted Boundaries | Forbidden Boundaries |
 | :--- | :--- | :--- |
 | **Where to Read on Startup** (Max 4 files) | 1. `AGENTS.md` (this file)<br>2. `README.md`<br>3. `predict.py`<br>4. `tests/test_model.py` | Do **NOT** scan arbitrary files or historical branches without explicit task scope. |
-| **Where to Write** | `src/`, `predict.py`, `train.py`, `tests/`, `docs/`, `Makefile`, `Dockerfile` | Do **NOT** write operational logs or cross-portfolio items locally; route portfolio-wide tasks to `portfolio-ops/MASTER_BACKLOG.md`. |
+| **Where to Write** | `src/`, `predict.py`, `train.py`, `tests/`, `docs/`, `Makefile`, `Dockerfile` | Do **NOT** write operational logs or cross-portfolio items locally; route portfolio-wide tasks to `systems-studio-portfolio-ops/MASTER_BACKLOG.md`. |
 | **Where NOT to Read** | Active source code and configuration files | Strictly NEVER inspect or parse files in `archive/`, `past_version/`, `.venv/`, or `.pytest_cache/`. |
 
 ---
@@ -48,7 +48,7 @@ Every agent turn operating on non-trivial architecture or operational decisions 
 
 ## 4. Systems Studio Universal Rules (#10–#13)
 
-- **Rule #10 (Backlog Auto-Registration):** Any new cross-portfolio feature, risk, or bug discovered must be formally logged in `portfolio-ops/MASTER_BACKLOG.md`.
+- **Rule #10 (Backlog Auto-Registration):** Any new cross-portfolio feature, risk, or bug discovered must be formally logged in `systems-studio-portfolio-ops/MASTER_BACKLOG.md`.
 - **Rule #11 (CI Workflow Parity):** Local test invocations (`pytest`) must match continuous integration pipelines exactly.
 - **Rule #12 (Dimensional Invariance, Anti-Tautology & Statistical Rigor):** Physical orbital dynamics must maintain units (km, degrees, seconds). Never use tautological surrogate targets; use calibrated survival probabilities or exact physical thresholds.
 - **Rule #13 (Automated Code-Rule Checker & Root Pytest Isolation):** Root test runs MUST isolate tests directory via `pytest.ini` (`testpaths = tests`, `norecursedirs = archive past_version .* .venv`).
