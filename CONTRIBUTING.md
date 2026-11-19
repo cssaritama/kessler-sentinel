@@ -18,7 +18,7 @@ unless the change needs that evidence.
 Rules:
 
 - Orbital quantities keep their units (km, degrees, seconds) through every feature and prediction.
-- Targets are calibrated probabilities or observed outcomes, never a formula derived from the inputs.
+- The training target is generated from the synthetic inputs by `src/build_cdm_dataset.py`. A model meant for real use needs observed outcomes, not a formula of its inputs.
 - Tests run from `tests/` only; archived folders are excluded from collection.
 - Never commit API keys, credentials or private tokens.
 - `docs/standards/` is a verified copy of the Systems Studio Engineering Standard. Do not edit it; start specifications, decisions and verification records from `docs/standards/templates/`.
